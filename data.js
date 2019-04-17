@@ -43,8 +43,14 @@ void (async () => {
     return data
     })
 
+    const fs = require('fs')
+
     // log the data for testing purposes
-    console.log(JSON.stringify(teams, null, 2))
+    fs.writeFile(
+      './json/teams.json',
+      JSON.stringify(teams, null, 2),
+      (err) => err ? console.error('Data not written!', err) : console.log('Data written!')
+    )
 
     await browser.close()
   } catch (error) {
